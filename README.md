@@ -25,7 +25,7 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
 
 書き換えたら
 
- docker build -t local/atokx3 .
+    docker build -t local/atokx3 .
 
 等としてビルドします。
 
@@ -33,13 +33,13 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
 
 以下のようにします。
 
-  docker run -d -v /tmp:/tmp -v /home:/home \
-    -e LC_CTYPE=ja_JP.utf-8 -e LC_COLLATE=ja_JP.utf-8 \
-    -e DISPLAY=$DISPLAY -e HOME=$HOME \
-    -e XDG_SESSION_COOKIE=$XDG_SESSION_COOKIE \
-    -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-    -u `whoami` local/atokx3 \
-    bash -c '/usr/bin/iiimx -iiimd; trap exit TERM INT; sleep infinity'
+    docker run -d -v /tmp:/tmp -v /home:/home \
+      -e LC_CTYPE=ja_JP.utf-8 -e LC_COLLATE=ja_JP.utf-8 \
+      -e DISPLAY=$DISPLAY -e HOME=$HOME \
+      -e XDG_SESSION_COOKIE=$XDG_SESSION_COOKIE \
+      -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
+      -u `whoami` local/atokx3 \
+      bash -c '/usr/bin/iiimx -iiimd; trap exit TERM INT; sleep infinity'
 
 これで /tmp/.iiim-$USER 以下にソケットができていれば動いています。
 
@@ -54,7 +54,7 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
 何故かソケットが /tmp/.iiim-$USER/:0 ではなくて /tmp/.iiim-$USER/:0.0
 にできて通信できなくなる事があります。良く分からないのですが、自分はとりあえず以下のように symlink を張って回避しています。
 
- ln -s :0.0 /tmp/.iiim-$USER/:0 
+    ln -s :0.0 /tmp/.iiim-$USER/:0 
 
 ## ライセンス
 
