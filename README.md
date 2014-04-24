@@ -33,7 +33,7 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
 
 以下のようにします。
 
-    docker run -d -v /tmp:/tmp -v /home:/home \
+    docker run -d -n=false -v /tmp:/tmp -v /home:/home \
       -e LC_CTYPE=ja_JP.utf-8 -e LC_COLLATE=ja_JP.utf-8 \
       -e DISPLAY=$DISPLAY -e HOME=$HOME \
       -e XDG_SESSION_COOKIE=$XDG_SESSION_COOKIE \
@@ -42,6 +42,8 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
       bash -c '/usr/bin/iiimx -iiimd; trap exit TERM INT; sleep infinity'
 
 これで /tmp/.iiim-$USER 以下にソケットができていれば動いています。
+
+この起動方法を使う場合、環境変数を固定してしまっているため、コンテナは毎回使い捨てます。
 
 ## 制限＆問題＆TODO
 
