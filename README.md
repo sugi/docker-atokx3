@@ -33,12 +33,12 @@ Docker の環境内には、既にサポートの終了した Debian etch i386 �
 
 以下のようにします。
 
-    docker run -d -n=false -v /tmp:/tmp -v /home:/home \
+    docker run -d --net=none -v /tmp:/tmp -v /home:/home -v /run:/run \
       -e LC_CTYPE=ja_JP.utf-8 -e LC_COLLATE=ja_JP.utf-8 \
       -e DISPLAY=$DISPLAY -e HOME=$HOME \
       -e XDG_SESSION_COOKIE=$XDG_SESSION_COOKIE \
       -e XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR \
-      -u `whoami` local/atokx3 \
+      -u `whoami` -h `hostname` local/atokx3 \
       bash -c '/usr/bin/iiimx -iiimd; trap exit TERM INT; sleep infinity'
 
 これで /tmp/.iiim-$USER 以下にソケットができていれば動いています。
